@@ -9,13 +9,22 @@ document.addEventListener('DOMContentLoaded', function() {
         mirror: true
     });
     
-    // Preloader
+    // Preloader with scroll fix
     window.addEventListener('load', function() {
         const preloader = document.querySelector('.preloader');
         preloader.style.opacity = '0';
+        
+        // Ensure all resources are loaded and page is scrollable
         setTimeout(() => {
             preloader.style.display = 'none';
-        }, 500);
+            
+            // Fix for mobile scroll issues
+            document.body.style.height = 'auto';
+            document.documentElement.style.height = 'auto';
+            
+            // Force layout recalculation to ensure scrolling works
+            document.body.offsetHeight;
+        }, 800);
     });
     
     // Custom cursor
@@ -69,12 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
         
-        // Toggle body scroll when menu is open/closed
-        if (navLinks.classList.contains('active')) {
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-        } else {
-            document.body.style.overflow = 'auto'; // Enable scrolling when menu is closed
-        }
+        // We're removing the overflow hidden approach as it may be causing scrolling issues
+        // Let the mobile menu overlay without preventing page scroll
     });
     
     // Close mobile menu when clicking on a link or anywhere on the page
@@ -82,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function() {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
         });
     });
     
@@ -93,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
             !hamburger.contains(event.target)) {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
         }
     });
     

@@ -35,6 +35,13 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
+    -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS devices */
+}
+
+/* Ensure scrollability */
+body.scrollable {
+    height: auto;
+    overflow-y: visible;
 }
 
 body::before {
@@ -213,6 +220,7 @@ header {
     padding: 1rem 0;
     transition: all 0.3s ease;
     background-color: var(--darker);
+    will-change: transform; /* Performance optimization for fixed elements */
 }
 
 .navbar {
@@ -1318,14 +1326,16 @@ footer::before {
         top: -100%;
         left: 0;
         width: 100%;
-        height: 100vh;
-        padding: 4rem 2rem 2rem;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 2rem;
         background: rgba(5, 5, 20, 0.98);
         flex-direction: column;
         align-items: center;
         transition: top 0.5s ease;
         backdrop-filter: blur(10px);
         z-index: 2000;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
     
     .nav-links.active {
