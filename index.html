@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECHNOVATION 2K25 - Mailam Engineering College</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="assets/images/college-logo.png" alt="Mailam Engineering College">
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#events">Events</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#register">Register</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="glitch" data-text="TECHNOVATION 2K25">TECHNOVATION 2K25</h1>
+                <h2>DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING</h2>
+                <p class="event-date">September 27, 2025</p>
+                <div class="countdown">
+                    <div class="time-block">
+                        <span id="days">00</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="hours">00</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="minutes">00</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <div class="time-block">
+                        <span id="seconds">00</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#register" class="btn primary-btn">Register Now</a>
+                    <a href="#events" class="btn secondary-btn">Explore Events</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <span class="mouse">
+                <span class="wheel"></span>
+            </span>
+            <span class="arrow">
+                <span></span>
+            </span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About <span>TECHNOVATION</span></h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right" data-aos-delay="200">
+                    <p>TECHNOVATION 2K25 is the flagship technical symposium organized by the Department of Computer Science and Engineering at Mailam Engineering College. This event brings together innovative minds, tech enthusiasts, and industry experts to showcase talent, share knowledge, and foster innovation.</p>
+                    <p>This one-day extravaganza features technical and non-technical events including paper presentations, project exhibitions, Ideathons, workshops, and fun activities designed to challenge your skills and creativity.</p>
+                    <div class="about-highlight">
+                        <div class="highlight-item">
+                            <i class="fas fa-trophy"></i>
+                            <h3>Win Amazing Prizes</h3>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-certificate"></i>
+                            <h3>Get Certified</h3>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-users"></i>
+                            <h3>Network with Experts</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left" data-aos-delay="200">
+                    <div class="image-wrapper">
+                        <img src="assets/images/about-technovation.jpg" alt="TECHNOVATION Event">
+                        <div class="floating-badge">
+                            <span>27</span>
+                            <span>SEP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured <span>Events</span></h2>
+            <div class="event-categories">
+                <div class="category-tabs">
+                    <button class="tab-btn active" data-tab="technical">Technical Events</button>
+                    <button class="tab-btn" data-tab="workshop">Workshop</button>
+                    <button class="tab-btn" data-tab="non-technical">Non-Technical</button>
+                </div>
+
+                <div class="event-cards-container">
+                    <!-- Technical Events -->
+                    <div class="event-cards active" id="technical">
+                        <div class="event-card" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="event-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3>Ideathon</h3>
+                            <p>Brainstorm and present innovative solutions for problem statements given on the spot within a limited time.</p>
+                            <a href="#" class="learn-more" data-modal="ideathonModal">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="event-card" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="event-icon">
+                                <i class="fas fa-file-powerpoint"></i>
+                            </div>
+                            <h3>Paper Presentation</h3>
+                            <p>Present your innovative research papers and ideas in front of expert judges and win exciting prizes.</p>
+                            <a href="#" class="learn-more" data-modal="paperPresentationModal">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="event-card" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="event-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3>Project Expo</h3>
+                            <p>Showcase your technical projects and prototypes to industry experts and peers.</p>
+                            <a href="#" class="learn-more" data-modal="projectExpoModal">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="event-card" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="event-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <h3>Techno Quest</h3>
+                            <p>Test your technical knowledge in this fast-paced, challenging quiz competition.</p>
+                            <a href="#" class="learn-more" data-modal="techQuizModal">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Workshop Events -->
+                    <div class="event-cards" id="workshop">
+                        <div class="event-card" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="event-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>Generative AI</h3>
+                            <p>Learn the art and science of crafting effective prompts for AI systems and explore generative AI technologies.</p>
+                            <a href="#" class="learn-more" data-modal="workshopModal">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Non-Technical Events -->
+                    <div class="event-cards" id="non-technical">
+                        <div class="event-card" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="event-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>Cryptic Hunt</h3>
+                            <p>Solve puzzles and riddles in this exciting treasure hunt with a technological twist.</p>
+                            <a href="#" class="learn-more" data-modal="crypticHuntModal">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="event-card" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="event-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3>Connections</h3>
+                            <p>Test your logical thinking and pattern recognition skills in this challenging connections game.</p>
+                            <a href="#" class="learn-more" data-modal="connectionsModal">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="event-card" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="event-icon">
+                                <i class="fas fa-laugh"></i>
+                            </div>
+                            <h3>Memes Mania</h3>
+                            <p>Showcase your creativity and humor by creating tech-related memes.</p>
+                            <a href="#" class="learn-more" data-modal="memesManiaModal">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Event <span>Schedule</span></h2>
+            <div class="timeline" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-item">
+                    <div class="time">09:00 AM</div>
+                    <div class="content">
+                        <h3>Registration & Welcome Kit</h3>
+                        <p>Collect your participant kit and event materials</p>
+                    </div>
+                <div class="timeline-item">
+                    <div class="time">10:00 AM</div>
+                    <div class="content">
+                        <h3>Technical Events Begin</h3>
+                        <p>Ideathon, Paper Presentation, Project Expo, and Technical Quiz</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">10:00 AM</div>
+                    <div class="content">
+                        <h3>Workshop Session</h3>
+                        <p>Generative AI & Prompt Engineering Workshop</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">11:00 AM</div>
+                    <div class="content">
+                        <h3>Non-Technical Events</h3>
+                        <p>Cryptic Hunt, Connections and Memes Mania</p>
+                    </div>
+                </div>
+                    <div class="timeline-item">
+                    <div class="time">01:00 PM</div>
+                    <div class="content">
+                        <h3>Lunch Break</h3>
+                        <p>Refreshments for all participants</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">03:00 PM</div>
+                    <div class="content">
+                        <h3>Valedictory & Prize Distribution</h3>
+                        <p>Closing ceremony and awarding winners</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register" class="register">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Register <span>Now</span></h2>
+            <div class="registration-content">
+                <div class="registration-info" data-aos="fade-right" data-aos-delay="200">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Event Date</h3>
+                            <p>September 27, 2025</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Venue</h3>
+                            <p>Mailam Engineering College, Mailam</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Last Date to Register</h3>
+                            <p>September 25, 2025</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Scan QR Code</h3>
+                            <p>Scan to register quickly</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="registration-form" data-aos="fade-left" data-aos-delay="200">
+                    <div class="qr-registration">
+                        <div class="qr-code-container">
+                            <img src="assets/images/qr-code.png" alt="Registration QR Code" class="qr-code-image">
+                            <p>Scan QR code to register</p>
+                        </div>
+                        <div class="register-button-container">
+                            <p>Or click the button below</p>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn register-btn">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Contact <span>Us</span></h2>
+            <div class="contact-wrapper">
+                <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                    <h3>Get in Touch</h3>
+                    <div class="coordinators">
+                        <h4>Staff Coordinators</h4>
+                        <div class="coordinator">
+                            <div class="coordinator-name">Mrs. P. R. JAYANTHI, ASP/CSE</div>
+                            <div class="coordinator-phone">+91 98948 21035</div>
+                        </div>
+                        <div class="coordinator">
+                            <div class="coordinator-name">Mr. S. SHANMUGANATHAN, AP/CSE</div>
+                            <div class="coordinator-phone">+91 76038 46069</div>
+                        </div>
+                    </div>
+                    <div class="coordinators">
+                        <h4>Student Coordinators</h4>
+                        <div class="coordinator">
+                            <div class="coordinator-name">GANESH RAM K</div>
+                            <div class="coordinator-phone">+91 93607 24212</div>
+                        </div>
+                        <div class="coordinator">
+                            <div class="coordinator-name">YUVASHAKTHIRAJ S</div>
+                            <div class="coordinator-phone">+91 99522 13671</div>
+                        </div>
+                        <div class="coordinator">
+                            <div class="coordinator-name">JEEVA S</div>
+                            <div class="coordinator-phone">+91 95002 11805</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container" data-aos="fade-left" data-aos-delay="200">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3897.2397023813896!2d79.61359682144271!3d12.118075322185724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52fefe91b74afd%3A0x9993516cb884dba!2sMailam%20Engineering%20College!5e0!3m2!1sen!2sin!4v1694358477193!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/college-logo.png" alt="Mailam Engineering College">
+                    <h3>TECHNOVATION 2K25</h3>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#events">Events</a></li>
+                            <li><a href="#schedule">Schedule</a></li>
+                            <li><a href="#register">Register</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TECHNOVATION | Department of Computer Science and Engineering, Mailam Engineering College</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Register Success Modal -->
+    <!-- Registration modal removed as we're using Google Forms now -->
+
+    <!-- Paper Presentation Event Modal -->
+    <div class="modal event-modal" id="paperPresentationModal">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-header">
+                <div class="event-modal-icon">
+                    <i class="fas fa-file-powerpoint"></i>
+                </div>
+                <h3>📄 Paper Presentation</h3>
+            </div>
+            <div class="event-modal-body">
+                <div class="event-section">
+                    <h4>Description:</h4>
+                    <p>Unleash your research and innovative ideas! Paper Presentation provides a platform for students to showcase their technical knowledge, problem-solving skills, and innovative solutions in front of a panel of experts. Present your ideas through well-structured research papers and engaging PPTs to inspire new perspectives.</p>
+                </div>
+                
+                <div class="event-section">
+                    <h4>Rules & Guidelines:</h4>
+                    <ol>
+                        <li>Maximum 4 members per team.</li>
+                        <li>Participants must present using PowerPoint (PPT) slides.</li>
+                        <li>Papers must be original and related to engineering, technology, or applied sciences.</li>
+                        <li>Each team will be allotted 8–10 minutes for presentation followed by Q&A.</li>
+                        <li>Plagiarized content will lead to disqualification.</li>
+                    </ol>
+                </div>
+                
+                <div class="event-section">
+                    <h4>📞 Event Coordinators:</h4>
+                    <p>Maniyarasan S – +91 73393 86911<br>
+                       Keerthana P – +91 82480 84415</p>
+                </div>
+            </div>
+            <div class="event-modal-footer">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn">Register Now</a>
+                <button class="btn secondary-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Expo Event Modal -->
+    <div class="modal event-modal" id="projectExpoModal">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-header">
+                <div class="event-modal-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3>💡 Project Expo</h3>
+            </div>
+            <div class="event-modal-body">
+                <div class="event-section">
+                    <h4>Description:</h4>
+                    <p>Showcase your creativity and innovation at the Project Expo! This event encourages participants to present both software and hardware projects, highlighting practical solutions to real-world problems. It's the perfect stage to demonstrate your technical skills and innovative thinking.</p>
+                </div>
+                <div class="event-section">
+                    <h4>Rules & Guidelines:</h4>
+                    <ol>
+                        <li>Both software and hardware projects are allowed.</li>
+                        <li>Teams can have up to 4 members.</li>
+                        <li>Projects must be developed by the participants—plagiarized or purchased work will not be accepted.</li>
+                        <li>Each team will be given a table/space to demonstrate their project.</li>
+                        <li>Participants should be ready to explain their project to judges and visitors.</li>
+                    </ol>
+                </div>
+                
+                <div class="event-section">
+                    <h4>📞 Event Coordinators:</h4>
+                    <p>Praveen kumar S – +91 93456 28677<br>
+                    Kavitha R – +91 73392 42505</p>
+                </div>
+            </div>
+            <div class="event-modal-footer">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn">Register Now</a>
+                <button class="btn secondary-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technical Quiz Event Modal -->
+    <div class="modal event-modal" id="techQuizModal">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-header">
+                <div class="event-modal-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h3>🧠 TechnoQuest (Technical Quiz)</h3>
+            </div>
+            <div class="event-modal-body">
+                <div class="event-section">
+                    <h4>Description:</h4>
+                    <p>Test your knowledge, speed, and coding intuition! This quiz combines technical MCQs and code-based challenges where participants analyze given outputs and choose the correct code from multiple options. Only the sharpest minds will make it to the final round!</p>
+                </div>
+                
+                <div class="event-section">
+                    <h4>Rules & Guidelines:</h4>
+                    <ol>
+                        <li>Teams of 2 members only.</li>
+                        <li>Round 1: Multiple-choice questions on core technical concepts.</li>
+                        <li>Round 2: Coding-based quiz (output is given, participants identify the correct code snippet).</li>
+                        <li>Use of mobile phones, calculators, or unfair means is strictly prohibited.</li>
+                        <li>Top-scoring teams advance to the final.</li>
+                    </ol>
+                </div>
+                
+                <div class="event-section">
+                    <h4>📞 Event Coordinators:</h4>
+                    <p>Rajesh Kumar S – +91 93609 79292<br>
+                    Vinothini M – +91 99402 82594</p>
+                </div>
+            </div>
+            <div class="event-modal-footer">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn">Register Now</a>
+                <button class="btn secondary-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ideathon Event Modal -->
+    <div class="modal event-modal" id="ideathonModal">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-header">
+                <div class="event-modal-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>💡 Ideathon</h3>
+            </div>
+            <div class="event-modal-body">
+                <div class="event-section">
+                    <h4>Description:</h4>
+                    <p>Got an idea that can change the game? 💭 In Ideathon, teams will be given a problem statement on the spot. With limited time to brainstorm, they must think out-of-the-box, prepare their approach, and present their most creative solution. It's all about quick thinking, innovation, and clarity of presentation!</p>
+                </div>
+                
+                <div class="event-section">
+                    <h4>Rules & Guidelines:</h4>
+                    <ol>
+                        <li>Teams can have up to 4 members.</li>
+                        <li>Problem statements will be provided on the spot.</li>
+                        <li>Teams will get preparation time before presenting their solution.</li>
+                        <li>Presentations must be clear, concise, and within the time limit.</li>
+                        <li>Use of internet/laptops is allowed during preparation (if permitted by organizers).</li>
+                        <li>Solutions should be original; plagiarism will lead to disqualification.</li>
+                        <li>Judges' decision is final and binding.</li>
+                    </ol>
+                </div>
+                
+                <div class="event-section">
+                    <h4>📞 Event Coordinators:</h4>
+                    <p>Gopal M – +91 73583 40479<br>
+                    Dhivyabharathi B – +91 75503 68418</p>
+                </div>
+            </div>
+            <div class="event-modal-footer">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn">Register Now</a>
+                <button class="btn secondary-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generative AI Workshop Modal -->
+    <div class="modal event-modal" id="workshopModal">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-header">
+                <div class="event-modal-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>🤖 Workshop: Generative AI</h3>
+            </div>
+            <div class="event-modal-body">
+                <div class="event-section">
+                    <h4>Description:</h4>
+                    <p>Step into the future with this exclusive hands-on workshop on Generative AI. Learn the fundamentals of large language models, prompt engineering, and real-world applications. Gain insights into how AI is revolutionizing industries and get the skills to build your own AI-powered solutions.</p>
+                </div>
+                
+                <div class="event-section">
+                    <h4>Rules & Guidelines:</h4>
+                    <ol>
+                        <li>Open to all registered participants.</li>
+                        <li>No prior experience required—basic programming knowledge is an advantage.</li>
+                        <li>Limited seats available (first-come, first-served).</li>
+                        <li>Participants must bring their own laptops.</li>
+                        <li>Certificates will be provided upon completion.</li>
+                    </ol>
+                </div>
+                
+                <div class="event-section">
+                    <h4>📞 Event Coordinators:</h4>
+                    <p>Kameshwaran V – +91 89034 43195<br>
+                    Parkavi S – +91 98942 27428</p>
+                </div>
+            </div>
+            <div class="event-modal-footer">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn">Register Now</a>
+                <button class="btn secondary-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cryptic Hunt Event Modal -->
+    <div class="modal event-modal" id="crypticHuntModal">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-header">
+                <div class="event-modal-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>⚡ Cryptic Hunt</h3>
+            </div>
+            <div class="event-modal-body">
+                <div class="event-section">
+                    <h4>Description:</h4>
+                    <p>Step into the world of puzzles and mysteries! 🔍 In this exciting digital treasure hunt, participants must crack clues hidden across different formats to reach the final answer. Each round will challenge your logic, observation, and problem-solving skills. Only the sharpest minds will uncover the secret at the end!</p>
+                </div>
+                
+                <div class="event-section">
+                    <h4>Rules & Guidelines:</h4>
+                    <ol>
+                        <li>This is a group event (teams of 4 members).</li>
+                        <li>Participants will progress through multiple rounds of puzzles.</li>
+                        <li>Each round unlocks a clue leading to the final answer.</li>
+                        <li>Use of mobile phones/laptops is allowed (since it's a digital puzzle).</li>
+                        <li>The fastest participant to crack all clues correctly will be declared the winner.</li>
+                        <li>Strictly no external help, discussion, or unfair means.</li>
+                    </ol>
+                </div>
+                
+                <div class="event-section">
+                    <h4>📞 Event Coordinators:</h4>
+                    <p>Sidarth R – +91 99524 98886<br>
+                    Roshini Kathu N – +91 78670 18478</p>
+                </div>
+            </div>
+            <div class="event-modal-footer">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn">Register Now</a>
+                <button class="btn secondary-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connections Event Modal -->
+    <div class="modal event-modal" id="connectionsModal">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-header">
+                <div class="event-modal-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>🔗 Connections</h3>
+            </div>
+            <div class="event-modal-body">
+                <div class="event-section">
+                    <h4>Description:</h4>
+                    <p>A fun and light-hearted event where a sequence of images or emojis together form a word. All you have to do is crack the word as quickly as possible! Multiple levels will keep you on your toes until the final round.</p>
+                </div>
+                
+                <div class="event-section">
+                    <h4>Rules & Guidelines:</h4>
+                    <ol>
+                        <li>Participants can register individually or in teams (max 3 members).</li>
+                        <li>Each round will have a set of images/emojis that form one word.</li>
+                        <li>Answers must be given within the time limit.</li>
+                        <li>Judges' decision is final; no disputes will be entertained.</li>
+                        <li>This event is meant for fun and creativity — keep it light!</li>
+                    </ol>
+                </div>
+                
+                <div class="event-section">
+                    <h4>📞 Event Coordinators:</h4>
+                    <p>Dinesh S –  +91 81220 80440<br>
+                    Divyalakshmi.K – +91 93606 33957</p>
+                </div>
+            </div>
+            <div class="event-modal-footer">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn">Register Now</a>
+                <button class="btn secondary-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memes Mania Event Modal -->
+    <div class="modal event-modal" id="memesManiaModal">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-header">
+                <div class="event-modal-icon">
+                    <i class="fas fa-laugh"></i>
+                </div>
+                <h3>😂 Memes Mania</h3>
+            </div>
+            <div class="event-modal-body">
+                <div class="event-section">
+                    <h4>Description:</h4>
+                    <p>Who said learning can't be fun? 🎬✨ Memes Mania is all about combining humor with technical knowledge. Participants must create funny, creative, and relatable memes on technical concepts using popular movie templates, trending formats, or original ideas. This event is designed to get your creative juices flowing and make learning fun again!</p>
+                </div>
+                
+                <div class="event-section">
+                    <h4>Rules & Guidelines:</h4>
+                    <ol>
+                        <li>Participants can register individually or in teams (max 3 members).</li>
+                        <li>Memes must be based on technical concepts only.</li>
+                        <li>Any meme that is vulgar, offensive, or unrelated will lead to disqualification.</li>
+                        <li>Participants can use movie scenes, trending formats, or original ideas as templates.</li>
+                        <li>Each team must present their memes to the audience/judges.</li>
+                        <li>Judges' decision will be final and binding; no disputes will be entertained.</li>
+                        <li>The event is meant to encourage creativity, fun, and learning—so keep it lighthearted!</li>
+                    </ol>
+                </div>
+                
+                <div class="event-section">
+                    <h4>📞 Event Coordinators:</h4>
+                    <p>Giridharan K – +91 93453 04184<br>
+                    Geetha.S.V: – +91 82201 21431</p>
+                </div>
+            </div>
+            <div class="event-modal-footer">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZqisiMyNI5JSWIardCPI726IrzhCIOwVqtUALFdDgN1XlOA/viewform?usp=header" target="_blank" class="btn primary-btn">Register Now</a>
+                <button class="btn secondary-btn modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JS Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
