@@ -35,13 +35,6 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
-    -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS devices */
-}
-
-/* Ensure scrollability */
-body.scrollable {
-    height: auto;
-    overflow-y: visible;
 }
 
 body::before {
@@ -101,10 +94,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 section {
-    padding: 8rem 0 6rem;
+    padding: 6rem 0;
     position: relative;
     overflow: hidden;
-    z-index: 1;
+    scroll-margin-top: 80px; /* Prevents header overlap when navigating to section */
 }
 
 section:nth-child(even)::before {
@@ -140,6 +133,7 @@ a:hover {
     z-index: 9999;
     transition: transform 0.1s ease;
     opacity: 0.7;
+    display: none; /* Hide by default and show only on desktop */
 }
 
 .cursor-follower {
@@ -153,6 +147,14 @@ a:hover {
     z-index: 9998;
     transition: all 0.3s ease;
     opacity: 0.4;
+    display: none; /* Hide by default and show only on desktop */
+}
+
+/* Only show custom cursor on desktop */
+@media (min-width: 992px) {
+    .cursor, .cursor-follower {
+        display: block;
+    }
 }
 
 /* Preloader */
@@ -216,11 +218,51 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 2000;
+    z-index: 1000;
     padding: 1rem 0;
-    transition: all 0.3s ease;
-    background-color: var(--darker);
-    will-change: transform; /* Performance optimization for fixed elements */
+    transition: all 0.3s ease, transform 0.4s ease;
+    background: linear-gradient(to bottom, rgba(5, 5, 20, 0.25), rgba(10, 10, 31, 0.15)); /* More transparent gradient */
+    backdrop-filter: blur(1px); /* Minimal blur */
+}
+
+/* Hide header when scrolling down */
+header.header-hidden {
+    transform: translateY(-100%);
+    box-shadow: none;
+}
+
+/* Header when scrolled */
+header.scrolled {
+    background: rgba(5, 5, 20, 0.8);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu toggle button for showing header */
+.menu-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--grad1);
+    color: var(--light);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show menu toggle button when header is hidden */
+header.header-hidden ~ .menu-toggle {
+    opacity: 1;
 }
 
 .navbar {
@@ -229,16 +271,20 @@ header {
     align-items: center;
     padding: 0 2rem;
     transition: all 0.3s ease;
+    position: relative; /* Added for better positioning context */
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative; /* For stacking context */
+    z-index: 1001; /* Ensure logo appears above background */
 }
 
 .logo img {
     max-height: 50px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)); /* Add subtle shadow to logo */
 }
 
 .logo h2 {
@@ -261,6 +307,7 @@ header {
     font-weight: 500;
     position: relative;
     padding: 0.5rem 0;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); /* Add subtle text shadow for better visibility */
 }
 
 .nav-links a::after {
@@ -282,6 +329,8 @@ header {
 .hamburger {
     display: none;
     cursor: pointer;
+    position: relative;
+    z-index: 1001; /* Ensure hamburger appears above background */
 }
 
 .bar {
@@ -291,14 +340,14 @@ header {
     margin: 5px auto;
     background-color: var(--light);
     transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Add shadow to hamburger lines */
 }
 
 /* Scrolled Header */
 header.scrolled {
-    background: rgba(5, 5, 20, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, rgba(5, 5, 20, 0.3), rgba(10, 10, 31, 0.2)); /* More transparent gradient */
+    backdrop-filter: blur(1.5px); /* Minimal blur to maintain readability */
+    box-shadow: none; /* Remove shadow completely */
     padding: 0.5rem 0;
 }
 
@@ -312,6 +361,8 @@ header.scrolled {
     background: var(--darker);
     overflow: hidden;
     padding-top: 5rem;
+    background-size: cover;
+    background-position: center center;
 }
 
 .hero::before {
@@ -322,8 +373,9 @@ header.scrolled {
     width: 100%;
     height: 100%;
     background: url('../images/hero-bg.jpg') center center/cover no-repeat;
-    opacity: 0.2;
+    opacity: 0.08;
     z-index: 1;
+    filter: brightness(1.2) contrast(1.1);
 }
 
 .overlay {
@@ -332,7 +384,7 @@ header.scrolled {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(5, 5, 20, 0.5), rgba(5, 5, 20, 0.9));
+    background: linear-gradient(to bottom, rgba(5, 5, 20, 0.2), rgba(5, 5, 20, 0.6));
     z-index: 2;
 }
 
@@ -607,39 +659,159 @@ header.scrolled {
     line-height: 1.8;
 }
 
-.about-image {
-    flex: 1;
+.about-visual {
+    flex: 1.2;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.image-wrapper {
-    border-radius: 10px;
+.techno-visual-wrapper {
+    border-radius: 15px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
     transform: perspective(1000px) rotateY(-15deg);
     transition: all 0.5s ease;
-}
-
-.image-wrapper:hover {
-    transform: perspective(1000px) rotateY(0);
-}
-
-.image-wrapper img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem;
+    background: rgba(10, 10, 31, 0.7);
     width: 100%;
-    display: block;
-    transition: all 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 
+                inset 0 0 20px rgba(0, 242, 255, 0.15),
+                0 0 15px rgba(0, 242, 255, 0.2);
+    border: 1px solid rgba(0, 242, 255, 0.2);
 }
 
-.image-wrapper:hover img {
-    transform: scale(1.05);
+.techno-visual-wrapper:hover {
+    transform: perspective(1000px) rotateY(0);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 
+                inset 0 0 30px rgba(0, 242, 255, 0.2),
+                0 0 25px rgba(0, 242, 255, 0.3);
 }
 
-.floating-badge {
+.techno-logo-text {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.techno-name {
+    font-family: var(--font-tech);
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.3));
+}
+
+.techno-name span {
+    background: linear-gradient(45deg, var(--secondary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.techno-year {
+    font-family: var(--font-tech);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: -0.5rem;
+    letter-spacing: 3px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3));
+}
+
+.techno-tagline {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    color: var(--light);
+    opacity: 0.9;
+    position: relative;
+}
+
+.techno-tagline::after {
+    content: '';
     position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 80px;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--primary), transparent);
+}
+
+.techno-college {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+}
+
+.techno-dept {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text);
+    opacity: 0.8;
+}
+
+/* Add animations to the visual elements */
+.techno-visual-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    animation: animateTop 3s linear infinite;
+    z-index: 1;
+}
+
+.techno-visual-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, var(--secondary), transparent);
+    animation: animateBottom 3s linear infinite;
+    z-index: 1;
+}
+
+@keyframes animateTop {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes animateBottom {
+    0% { right: -100%; }
+    100% { right: 100%; }
+}
+
+.techno-name {
+    animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.3)); }
+    100% { filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.5)); }
+}
+
+/* Floating badge styles - commented out as removed */
+/*
+.badge {
     height: 80px;
     background: var(--grad2);
     border-radius: 50%;
@@ -653,21 +825,14 @@ header.scrolled {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     animation: float 3s ease-in-out infinite;
 }
+*/
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
 
-.floating-badge span:first-child {
-    font-size: 1.8rem;
-    line-height: 1;
-}
-
-.floating-badge span:last-child {
-    font-size: 0.9rem;
-    line-height: 1;
-}
+/* Floating badge styles removed */
 
 .about-highlight {
     display: grid;
@@ -1055,12 +1220,45 @@ input:focus, select:focus, textarea:focus {
     flex: 1;
 }
 
+.location-section {
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+}
+
 .map-container {
     flex: 1;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 25px rgba(0, 242, 255, 0.2);
+    position: relative;
+    border: 2px solid var(--primary);
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    height: 400px;
 }
+
+.map-container:hover {
+    box-shadow: 0 5px 30px rgba(0, 242, 255, 0.4), 0 0 15px rgba(255, 0, 255, 0.2);
+}
+
+.map-title {
+    font-family: var(--font-tech);
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.map-title i {
+    color: var(--secondary);
+    font-size: 1.2rem;
+}
+
+/* Custom map styling removed */
 
 .contact-info h3 {
     font-size: 1.8rem;
@@ -1323,29 +1521,36 @@ footer::before {
     
     .nav-links {
         position: fixed;
-        top: -100%;
+        top: -100vh;
         left: 0;
         width: 100%;
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
         padding: 2rem;
-        background: rgba(5, 5, 20, 0.98);
+        background: rgba(5, 5, 20, 0.9); /* Slightly more opaque for better visibility */
         flex-direction: column;
         align-items: center;
-        transition: top 0.5s ease;
-        backdrop-filter: blur(10px);
-        z-index: 2000;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(2px); /* Minimal blur consistent with header */
+        z-index: 999;
+        height: auto;
+        overflow-y: auto;
+        max-height: calc(100vh - 80px);
     }
     
+    /* Mobile menu states */
     .nav-links.active {
         top: 80px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     
-    .nav-links a {
-        font-size: 1.5rem;
-        margin: 1.2rem 0;
-        padding: 0.8rem 0;
+    /* When header is hidden, menu shouldn't be visible */
+    header.header-hidden .nav-links {
+        top: -100vh;
+    }
+    
+    /* Force show menu when explicitly activated, even if header is hidden */
+    header.header-hidden .nav-links.active {
+        top: 0;
+        padding-top: calc(80px + 1rem);
     }
     
     .hamburger {
@@ -1563,5 +1768,56 @@ footer::before {
     .event-modal .modal-content {
         width: 95%;
         max-width: 95%;
+    }
+    
+    /* Map responsive styling */
+    .location-section {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+    
+    .map-container iframe {
+        height: 100%;
+    }
+    
+    .map-title {
+        font-size: 1.2rem;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* About image styling for mobile */
+    .about-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .techno-visual-wrapper {
+        padding: 1.5rem;
+        transform: none;
+        margin: 0 auto;
+        max-width: 90%;
+    }
+    
+    .techno-name {
+        font-size: 2rem;
+    }
+    
+    .techno-year {
+        font-size: 1.8rem;
+    }
+    
+    .techno-tagline {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .techno-college, .techno-dept {
+        text-align: center;
     }
 }

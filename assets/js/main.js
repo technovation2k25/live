@@ -9,37 +9,31 @@ document.addEventListener('DOMContentLoaded', function() {
         mirror: true
     });
     
-    // Preloader with scroll fix
+    // Preloader
     window.addEventListener('load', function() {
         const preloader = document.querySelector('.preloader');
         preloader.style.opacity = '0';
-        
-        // Ensure all resources are loaded and page is scrollable
         setTimeout(() => {
             preloader.style.display = 'none';
-            
-            // Fix for mobile scroll issues
-            document.body.style.height = 'auto';
-            document.documentElement.style.height = 'auto';
-            
-            // Force layout recalculation to ensure scrolling works
-            document.body.offsetHeight;
-        }, 800);
+        }, 500);
     });
     
-    // Custom cursor
+    // Custom cursor - only for desktop
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
     
-    document.addEventListener('mousemove', function(e) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 100);
-    });
+    // Check if we're on desktop (not touch device)
+    if (window.innerWidth > 992 && !('ontouchstart' in window)) {
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+    }
     
     document.addEventListener('mousedown', function() {
         cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
@@ -73,41 +67,97 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const menuToggle = document.querySelector('.menu-toggle');
     
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
         
-        // We're removing the overflow hidden approach as it may be causing scrolling issues
-        // Let the mobile menu overlay without preventing page scroll
-    });
-    
-    // Close mobile menu when clicking on a link or anywhere on the page
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (navLinks.classList.contains('active') && 
-            !navLinks.contains(event.target) && 
-            !hamburger.contains(event.target)) {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
+        // Ensure header is visible when menu is open
+        if (navLinks.classList.contains('active')) {
+            header.classList.remove('header-hidden');
         }
     });
     
-    // Header scroll effect
+    // Menu toggle button to show header
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            header.classList.remove('header-hidden');
+            setTimeout(() => {
+                hamburger.classList.add('active');
+                navLinks.classList.add('active');
+            }, 300);
+        });
+    }
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // First close the menu
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            
+            // Check if the link is an anchor link
+            if(this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if(targetSection) {
+                    // Allow time for menu to close before scrolling
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                }
+            }
+        });
+    });
+    
+    // Header scroll effect with hide/show functionality
     const header = document.querySelector('header');
     
+    // Variables to track scroll direction
+    let lastScrollTop = 0;
+    let scrollTimeout;
+    
+    // Function to check if mobile menu is open
+    function checkMenuState() {
+        return document.querySelector('.nav-links').classList.contains('active');
+    }
+    
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const isMenuOpen = checkMenuState();
+                
+                // Don't hide header if mobile menu is open or at the very top of the page
+                if (isMenuOpen) {
+                    header.classList.remove('header-hidden');
+                } else {
+                    // Keep header hidden except when at the very top
+                    if (scrollTop > 10) {
+                        // Not at the top - hide header
+                        header.classList.add('header-hidden');
+                    } else {
+                        // At the top - show header
+                        header.classList.remove('header-hidden');
+                    }
+                }
+                
+                // Add scrolled class for styling when not at the top
+                if (scrollTop > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+                scrollTimeout = null;
+            }, 100);
         }
     });
     
@@ -153,17 +203,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Back to top button
     const backToTopBtn = document.getElementById('back-to-top');
     
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.add('show');
-        } else {
-            backToTopBtn.classList.remove('show');
-        }
-    });
-    
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    if (backToTopBtn) {
+        // Throttle scroll events for better performance
+        let backToTopTimeout;
+        window.addEventListener('scroll', function() {
+            if (!backToTopTimeout) {
+                backToTopTimeout = setTimeout(function() {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.add('show');
+                    } else {
+                        backToTopBtn.classList.remove('show');
+                    }
+                    backToTopTimeout = null;
+                }, 150);
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
     
     // Events tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
